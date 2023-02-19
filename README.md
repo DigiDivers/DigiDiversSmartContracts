@@ -1,5 +1,8 @@
 # Digi Divers NFT Mint 
 
+### (From buildspace). With an extra front-end to mint NFTs. 
+
+
 How to run
 
 1. cd into the `app` folder
