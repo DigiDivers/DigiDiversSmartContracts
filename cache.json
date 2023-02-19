@@ -1,0 +1,34 @@
+{
+  "program": {
+    "candyMachine": "",
+    "candyGuard": "",
+    "candyMachineCreator": "",
+    "collectionMint": ""
+  },
+  "items": {
+    "0": {
+      "name": "Digi Divers NFT Collection",
+      "image_hash": "0844f64238c12525e481af486fc4b48af16ea59430cc1080495e00fcbb23c495",
+      "image_link": "https://arweave.net/wYeLjo6YDDELFXq2C9f_SQVD3xaWut9AvctedCx3_6A?ext=png",
+      "metadata_hash": "c4266a4eac0b7308a4ae726923d80a3aa944c3d17eac1ef8a74920482b7b7b10",
+      "metadata_link": "https://arweave.net/JvqLYlbgx88V3Tlmvjx2fe1_0AeEsP6rpkM4XU8F4vo",
+      "onChain": false
+    },
+    "1": {
+      "name": "Digi Divers NFT Collection",
+      "image_hash": "0844f64238c12525e481af486fc4b48af16ea59430cc1080495e00fcbb23c495",
+      "image_link": "https://arweave.net/MFmLX-JJ9jL3giTt3LcD4hLMopApwOUw4Le8TIf54yw?ext=png",
+      "metadata_hash": "c211800b66f84581d4d9705fcd057bb7f27b2b3b14046ea48ad310ffbb571439",
+      "metadata_link": "https://arweave.net/HoqVZq-qRh5OKkVaW1uPqXvefkB6pIZYXMIGbd9NVaA",
+      "onChain": false
+    },
+    "2": {
+      "name": "Digi Divers NFT Collection",
+      "image_hash": "0844f64238c12525e481af486fc4b48af16ea59430cc1080495e00fcbb23c495",
+      "image_link": "https://arweave.net/SMdsaeqDsZWBEfQEFDY8gJ9HLLIm7LZGTnxZylC3N6k?ext=png",
+      "metadata_hash": "5a8d08b928511bd082f213e60af47f00c91d3c499a98425a01b9b8f9ad123ac2",
+      "metadata_link": "https://arweave.net/5z_p6by167GZDfjsGwybKSvtw51XUK_OWGkxIHI3wDo",
+      "onChain": false
+    }
+  }
+}
