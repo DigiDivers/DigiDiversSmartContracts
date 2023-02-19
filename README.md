@@ -12,4 +12,8 @@ Allows you to send SOL to another address mapping.
     `sendSolToUsers(from, mappingAddressAmount)`
 
 ## Add Experience Level (XP) and Level Up (LVL) Existing pNFTs
-Coming soon...
+
+(Not working yet)
+Allows you to add XP and LVL to existing pNFTs. 
+
+    `updateNFT(nft, metadataUri, newName)`

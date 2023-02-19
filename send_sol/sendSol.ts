@@ -49,3 +49,6 @@ export async function sendSolToUsers({ from, mapAddressAmount }: { from: Signer;
 const mappingAddressAmountMap = new Map<string, number>(); 
 mappingAddressAmountMap.set("6cKDgYaPxpqm15sxCB34zZxHa2CSSAtNAxMkUdYHmooC", 0.05);
 mappingAddressAmountMap.set("6cKDgYaPxpqm15sxCB34zZxHa2CSSAtNAxMkUdYTmooC", 0.05);
+
+
+
