@@ -1,0 +1,27 @@
+  /Users/emilioandere/solana-nft-minter:
+  total used in directory 840 available 42.8 GiB
+  drwxr-xr-x   25 emilioandere  staff     800 Feb 19 17:44 .
+  drwxr-xr-x+ 151 emilioandere  staff    4832 Feb 19 19:43 ..
+  -rw-r--r--    1 emilioandere  staff     534 Feb 19 18:15 .env.local
+  -rw-r--r--    1 emilioandere  staff     466 Feb 19 17:41 .env.local.example
+  -rw-r--r--    1 emilioandere  staff      74 Feb 19 17:23 .eslintrc.json
+  drwxr-xr-x   12 emilioandere  staff     384 Feb 19 17:24 .git
+  -rw-r--r--    1 emilioandere  staff     385 Feb 19 17:23 .gitignore
+  drwxr-xr-x    4 emilioandere  staff     128 Feb 19 17:24 .husky
+  drwxr-xr-x    8 emilioandere  staff     256 Feb 19 18:15 .next
+  -rw-r--r--    1 emilioandere  staff      43 Feb 19 17:23 .prettierignore
+  -rw-r--r--    1 emilioandere  staff      67 Feb 19 17:23 .prettierrc.json
+  -rw-r--r--    1 emilioandere  staff     164 Feb 19 17:23 CODING_STYLE.md
+  -rw-r--r--    1 emilioandere  staff    1194 Feb 19 17:23 CONTRIBUTING.md
+  -rw-r--r--    1 emilioandere  staff    1096 Feb 19 17:23 LICENSE.md
+  -rw-r--r--    1 emilioandere  staff    4079 Feb 19 17:23 README.md
+  -rw-r--r--    1 emilioandere  staff     291 Feb 19 17:23 next-auth.d.ts
+  -rw-r--r--    1 emilioandere  staff     201 Feb 19 17:44 next-env.d.ts
+  -rw-r--r--    1 emilioandere  staff     200 Feb 19 17:23 next.config.js
+  drwxr-xr-x  613 emilioandere  staff   19616 Feb 19 17:24 node_modules
+  -rw-r--r--    1 emilioandere  staff    1584 Feb 19 17:23 package.json
+  drwxr-xr-x    9 emilioandere  staff     288 Feb 19 17:23 pages
+  drwxr-xr-x    6 emilioandere  staff     192 Feb 19 17:23 public
+  drwxr-xr-x    5 emilioandere  staff     160 Feb 19 17:23 src
+  -rw-r--r--    1 emilioandere  staff     533 Feb 19 17:23 tsconfig.json
+  -rw-r--r--    1 emilioandere  staff  364867 Feb 19 17:23 yarn.lock

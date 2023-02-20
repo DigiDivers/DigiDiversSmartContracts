@@ -1,3 +1,0 @@
-{"v":0,"name":"sugar","msg":"Lend me some sugar, I am your neighbor.","level":30,"hostname":"Emilios-MacBook-Pro.local","pid":52866,"time":"2023-02-19T05:06:31.988252Z","target":"sugar","line":123,"file":"src/main.rs"}
-{"v":0,"name":"sugar","msg":"MissingFileError(\"config.json\")","level":50,"hostname":"Emilios-MacBook-Pro.local","pid":52866,"time":"2023-02-19T05:06:31.988878Z","target":"sugar_cli::config::parser","line":21,"file":"src/config/parser.rs"}
-t":"sugar_cli::cache","line":157,"file":"src/cache.rs"}
