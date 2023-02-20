@@ -1,7 +1,6 @@
 # Smart Contract Management for Digi Divers
 
 ## NFT Creation
-Allows you to create a Metaplex Candy Machine with a given name, description, and image
 Front-end to mint NFTs from the Digi Divers collection game. 
 Comes with front-end to mint NFTs. 
 
