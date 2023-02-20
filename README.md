@@ -16,7 +16,8 @@ Allows you to send SOL to another address mapping.
 
 ## Add Experience Level (XP) and Level Up (LVL) Existing pNFTs
 
-(Not working yet)
-Allows you to add XP and LVL to existing pNFTs. 
+(Not working yet, needs to be changed to work with NFT Creation section)
+
+Hypotethically => Allows you to add XP and LVL to existing pNFTs. 
 
     `updateNFT(nft, metadataUri, newName)`
