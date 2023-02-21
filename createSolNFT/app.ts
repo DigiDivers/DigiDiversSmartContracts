@@ -24,22 +24,54 @@ const METAPLEX = Metaplex.make(connection)
 		})
 	);
 
+
+// CONFIG FUNCTION
+// parameters: level,
 // create meta data
-const CONFIG = {
-	uploadPath: 'assets/',
-	imgFileName: 'science.png',
-	imgType: 'image/png',
-	imgName: 'Science Rules',
-	description: 'A one-of-a-kind pixelated science nerd',
-	attributes: [
-		{ trait_type: 'Bubbles', value: 'Yes' },
-		{ trait_type: 'Type', value: 'Pixelated' },
-		{ trait_type: 'Background', value: 'Clear' },
-	],
-	sellerFeeBasisPoints: 500, //500 bp = 5%
-	symbol: 'SCI',
-	creators: [{ address: WALLET.publicKey, share: 100 }],
-};
+async function createLevelXNft(level: number, image: string = 'science.png') {
+	const CONFIG = {
+		uploadPath: 'assets/',
+		imgFileName: image,
+		imgType: 'image/png',
+		imgName: 'Level Image',
+		tokenStandard: 4,
+		description: 'Level Avatar Digi Divers',
+		attributes: [
+			{ trait_type: 'Level', value: level.toString()}
+		],
+		sellerFeeBasisPoints: 500, //500 bp = 5%
+		symbol: 'DIGI',
+		creators: [{ address: WALLET.publicKey, share: 100 }],
+	};
+
+	// Step 1 - Upload Image
+	const imgUri = await uploadImage(CONFIG.uploadPath, CONFIG.imgFileName);
+
+	// Step 2 - Upload Metadata
+	const metadataUri = await uploadMetadata(
+		imgUri,
+		CONFIG.imgType,
+		CONFIG.imgName,
+		CONFIG.description,
+		CONFIG.attributes
+	);
+
+	// Step 3 - Create NFT
+	await mintNft(
+		metadataUri,
+		CONFIG.imgName,
+		CONFIG.sellerFeeBasisPoints,
+		CONFIG.symbol,
+		CONFIG.creators
+	);
+}
+
+// async function airdropNFT(nftAddress: string, amount: number) {
+// 	console.log(`Step 4 - Airdropping NFT`);
+// 	const nft = await METAPLEX.nfts().get(nftAddress);
+// 	const airdropTx = await METAPLEX.nfts().airdrop(nft, amount);
+// 	console.log(`   Airdrop Tx:`, airdropTx);
+// }
 
 // upload NFT metadata
 async function uploadImage(
@@ -95,7 +127,6 @@ async function mintNft(
 			sellerFeeBasisPoints: sellerFee,
 			symbol: symbol,
 			creators: creators,
-			isMutable: false,
 			maxSupply: toBigNumber(1),
 		},
 		{ commitment: 'finalized' }
@@ -107,34 +138,10 @@ async function mintNft(
 }
 
 async function main() {
-	console.log(
-		`Minting ${
-			CONFIG.imgName
-		} to an NFT in Wallet ${WALLET.publicKey.toBase58()}.`
-	);
-
-	//Step 1 - Upload Image
-	const imgUri = await uploadImage(CONFIG.uploadPath, CONFIG.imgFileName);
-
-	//Step 2 - Upload Metadata
-	const metadataUri = await uploadMetadata(
-		imgUri,
-		CONFIG.imgType,
-		CONFIG.imgName,
-		CONFIG.description,
-		CONFIG.attributes
-	);
-
-	//Step 3 - Mint NFT
-	await mintNft(
-		metadataUri,
-		CONFIG.imgName,
-		CONFIG.sellerFeeBasisPoints,
-		CONFIG.symbol,
-		CONFIG.creators
-	);
+	await createLevelXNft(1, '1.png');
 }
 
 main();
 // QUESTIONS FOR MYSELF
 // what is bundlrStorage
+
