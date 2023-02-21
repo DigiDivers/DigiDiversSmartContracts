@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         name,
         description,
         image,
-        symbol
+        symbol,
       })
       .run();
 

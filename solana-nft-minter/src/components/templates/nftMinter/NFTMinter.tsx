@@ -21,7 +21,7 @@ import { Metaplex, bundlrStorage, walletAdapterIdentity } from '@metaplex-founda
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Connection, clusterApiUrl } from '@solana/web3.js';
 import apiPost from 'utils/apiPost';
-import backgroundImg from "./img.png"
+import backgroundImg from "./img.png";
 
 const NFTMinter: FC = () => {
   const BgColor = useColorModeValue('gray.100', 'gray.600');
@@ -70,7 +70,8 @@ const NFTMinter: FC = () => {
         };
       });
     };
-
+    console.log(`file: ${file}`);
+    
     if (file) {
       const base64Data = await convertBase64(file[0]);
       const options = {
@@ -78,9 +79,9 @@ const NFTMinter: FC = () => {
         description,
         image: base64Data,
         symbol: 'M-NFT',
-      }
+      };
 
-     const uri = await apiPost('/upload', options)
+      const uri = await apiPost('/upload', options)
         .then((data: UploadMetadataOutput) => {
           console.log(data);
           return data.uri;
@@ -90,44 +91,44 @@ const NFTMinter: FC = () => {
         });
 
 
-    if (!uri) {
-      SetStatus('');
-      throw toast({
-        title: 'Upload Failed',
-        status: 'error',
-        position: 'bottom-right',
-        isClosable: true,
-      });
-    }
-    // TODO: Processing Mint
-    SetStatus('Processing Mint');
-    const data = await metaplex
-      .nfts()
-      .create({
-        uri,
-        name,
-        sellerFeeBasisPoints: 500,
-      })
-      .run()
-      .catch((e) => {
+      if (!uri) {
         SetStatus('');
         throw toast({
-          title: 'Mint Failed',
-          description: `Error: ${e.message}`,
+          title: 'Upload Failed',
           status: 'error',
           position: 'bottom-right',
           isClosable: true,
         });
-      });
+      }
+      // TODO: Processing Mint
+      SetStatus('Processing Mint');
+      const data = await metaplex
+        .nfts()
+        .create({
+          uri,
+          name,
+          sellerFeeBasisPoints: 500,
+        })
+        .run()
+        .catch((e) => {
+          SetStatus('');
+          throw toast({
+            title: 'Mint Failed',
+            description: `Error: ${e.message}`,
+            status: 'error',
+            position: 'bottom-right',
+            isClosable: true,
+          });
+        });
       console.log({ data });
 
       // TODO: Mint Successful Message
       SetStatus('');
       toast({
-      title: 'Mint Successful',
-      status: 'success',
-      position: 'bottom-right',
-      isClosable: true,
+        title: 'Mint Successful',
+        status: 'success',
+        position: 'bottom-right',
+        isClosable: true,
       });
     };
   };
