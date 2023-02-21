@@ -24,7 +24,16 @@ Hypotethically => Allows you to add XP and LVL to existing pNFTs.
 
     `updateNFT(nft, metadataUri, newName)`
 
-## createSolNFT
+## createSolNFT (will update)
+
+to mint a devnet nft:
+
+1. add the local wallet to ur phantom using helper.ts
+2. run `cd createSolNFT`
+3. install ts-node
+4. run `ts-node app.ts`
+
+### resources
 
 1. https://www.quicknode.com/guides/solana-development/how-to-mint-an-nft-on-solana-using-typescript
 2. https://www.quicknode.com/guides/solana-development/how-to-create-programmable-nfts-on-solana
