@@ -5,6 +5,10 @@ import {
 	bundlrStorage,
 	toMetaplexFile,
 	toBigNumber,
+	UploadMetadataInput,
+	Nft,
+	isNftWithToken,
+	NftWithToken,
 } from '@metaplex-foundation/js';
 import * as fs from 'fs';
 import secret from './localWallet/my-keypair.json';
@@ -25,10 +29,7 @@ const METAPLEX = Metaplex.make(connection)
 	);
 
 
-// CONFIG FUNCTION
-// parameters: level,
-// create meta data
-async function createLevelXNft(level: number, image: string = 'science.png') {
+async function createLevelXNft(level: number, image: string): Promise<NftWithToken> {
 	const CONFIG = {
 		uploadPath: 'assets/',
 		imgFileName: image,
@@ -57,7 +58,7 @@ async function createLevelXNft(level: number, image: string = 'science.png') {
 	);
 
 	// Step 3 - Create NFT
-	await mintNft(
+	return await mintNft(
 		metadataUri,
 		CONFIG.imgName,
 		CONFIG.sellerFeeBasisPoints,
@@ -66,12 +67,20 @@ async function createLevelXNft(level: number, image: string = 'science.png') {
 	);
 }
 
-// async function airdropNFT(nftAddress: string, amount: number) {
-// 	console.log(`Step 4 - Airdropping NFT`);
-// 	const nft = await METAPLEX.nfts().get(nftAddress);
-// 	const airdropTx = await METAPLEX.nfts().airdrop(nft, amount);
-// 	console.log(`   Airdrop Tx:`, airdropTx);
-// }
+async function updateNft(nft: NftWithToken, newLevel: number) {
+	const { uri: newUri } = await METAPLEX.nfts().uploadMetadata({
+		...nft.json,
+		attributes: [{ trait_type: 'Level', value: newLevel.toString()}],
+	});
+	
+	console.log(`   New Metadata URI:`, newUri);
+	await METAPLEX.nfts().update({ 
+		nftOrSft: nft,
+		uri: newUri,
+	});
+	console.log(`Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`);
+	
+}
 
 // upload NFT metadata
 async function uploadImage(
@@ -118,7 +127,7 @@ async function mintNft(
 	sellerFee: number,
 	symbol: string,
 	creators: { address: PublicKey; share: number }[]
-) {
+): Promise<NftWithToken> {
 	console.log(`Step 3 - Minting NFT`);
 	const { nft } = await METAPLEX.nfts().create(
 		{
@@ -135,13 +144,15 @@ async function mintNft(
 	console.log(
 		`   Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`
 	);
+	return nft
 }
 
 async function main() {
-	await createLevelXNft(1, '1.png');
+	// test create function
+	let nft: NftWithToken = await createLevelXNft(1, '1.png');
+	// test update function
+	await updateNft(nft, 2);
 }
 
 main();
-// QUESTIONS FOR MYSELF
-// what is bundlrStorage
 
