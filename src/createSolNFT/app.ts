@@ -25,6 +25,11 @@ const METAPLEX = Metaplex.make(connection)
 		})
 	);
 
+/** Create Level X NFT
+ * @param level: Level of the NFT
+ * @param image: Image of the NFT
+ * @returns NFT with the new level
+ */
 export async function createLevelXNft(
 	level: number,
 	image: string
@@ -64,8 +69,18 @@ export async function createLevelXNft(
 	);
 }
 
-// update NFT
-export async function updateNftLevel(nft: NftWithToken, newLevel: number, newImage?: string): Promise<NftWithToken> {
+/**
+ * Update NFT Level
+ * @param nft: NFT to update
+ * @param newLevel: New level of the NFT
+ * @param newImage: New image of the NFT
+ * @returns NFT with the new level
+ */
+export async function updateNftLevel(
+	nft: NftWithToken, 
+	newLevel: number, 
+	newImage?: string
+): Promise<NftWithToken> {
 	console.log(`old nft metadata: `, nft.json);
 
 	let newMetadata: UploadMetadataInput; 
@@ -98,7 +113,12 @@ export async function updateNftLevel(nft: NftWithToken, newLevel: number, newIma
 	return nft
 }
 
-// upload NFT metadata
+/**
+ * Upload Image to Arweave 
+ * @param filePath: Path of the image
+ * @param fileName: Name of the image
+ * @returns URI of the image
+ */
 async function uploadImage(
 	filePath: string,
 	fileName: string
@@ -111,6 +131,15 @@ async function uploadImage(
 	return imgUri;
 }
 
+/**
+ * Upload Metadata
+ * @param imgUri: URI of the image
+ * @param imgType: Type of the image
+ * @param nftName: Name of the NFT
+ * @param description: Description of the NFT
+ * @param attributes: Array of attributes
+ * @returns URI of the metadata 
+ */
 async function uploadMetadata(
 	imgUri: string,
 	imgType: string,
@@ -137,6 +166,15 @@ async function uploadMetadata(
 	return uri;
 }
 
+/**
+ * Mint NFT
+ * @param metadataUri: URI of the metadata
+ * @param name: Name of the NFT
+ * @param sellerFee: Seller fee in basis points
+ * @param symbol: Symbol of the NFT
+ * @param creators: Array of creators
+ * @returns NftWithToken
+ */
 async function mintNft(
 	metadataUri: string,
 	name: string,
