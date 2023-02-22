@@ -5,14 +5,14 @@ import {
 	bundlrStorage,
 	toMetaplexFile,
 	toBigNumber,
+	UploadMetadataInput,
 	NftWithToken,
 } from '@metaplex-foundation/js';
 import * as fs from 'fs';
-import secret from './localWallet/my-keypair.json';
+import { secret } from '../assets';
 
 const DEVNET_ENDPOINT = clusterApiUrl('devnet');
 const connection = new Connection(DEVNET_ENDPOINT);
-
 const WALLET = Keypair.fromSecretKey(new Uint8Array(secret));
 
 const METAPLEX = Metaplex.make(connection)
@@ -25,10 +25,10 @@ const METAPLEX = Metaplex.make(connection)
 		})
 	);
 
-// CONFIG FUNCTION
-// parameters: level,
-// create meta data
-async function createLevelXNft(level: number, image: string = 'science.png') {
+async function createLevelXNft(
+	level: number,
+	image: string
+): Promise<NftWithToken> {
 	const CONFIG = {
 		uploadPath: 'assets/',
 		imgFileName: image,
@@ -55,7 +55,7 @@ async function createLevelXNft(level: number, image: string = 'science.png') {
 	);
 
 	// Step 3 - Create NFT
-	await mintNft(
+	return await mintNft(
 		metadataUri,
 		CONFIG.imgName,
 		CONFIG.sellerFeeBasisPoints,
@@ -64,12 +64,28 @@ async function createLevelXNft(level: number, image: string = 'science.png') {
 	);
 }
 
-// async function airdropNFT(nftAddress: string, amount: number) {
-// 	console.log(`Step 4 - Airdropping NFT`);
-// 	const nft = await METAPLEX.nfts().get(nftAddress);
-// 	const airdropTx = await METAPLEX.nfts().airdrop(nft, amount);
-// 	console.log(`   Airdrop Tx:`, airdropTx);
-// }
+// update NFT
+async function updateNftLevel(nft: NftWithToken, newLevel: number) {
+	console.log(`old nft metadata: `, nft.json);
+
+	const newMetadata: UploadMetadataInput = {
+		...nft.json,
+		image: 'https://arweave.net/8b6yTDi8bX0bB1w9L9Rgjz-HUUbUJ9ijn_eJ30ThL8k', // TODO: update function to take in an image
+		attributes: [{ trait_type: 'Level', value: newLevel.toString() }],
+	};
+	const { uri: newUri } = await METAPLEX.nfts().uploadMetadata(newMetadata);
+
+	console.log(`new nft metadata: `, newMetadata);
+
+	// console.log(`   New Metadata URI:`, newUri);
+	await METAPLEX.nfts().update({
+		nftOrSft: nft,
+		uri: newUri,
+	});
+	console.log(
+		`Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`
+	);
+}
 
 // upload NFT metadata
 async function uploadImage(
@@ -116,7 +132,7 @@ async function mintNft(
 	sellerFee: number,
 	symbol: string,
 	creators: { address: PublicKey; share: number }[]
-) {
+): Promise<NftWithToken> {
 	console.log(`Step 3 - Minting NFT`);
 	const { nft } = await METAPLEX.nfts().create(
 		{
@@ -133,38 +149,14 @@ async function mintNft(
 	console.log(
 		`   Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`
 	);
-
-	await addDelegate(nft);
-}
-
-async function addDelegate(nft: NftWithToken) {
-	let { response } = await METAPLEX.nfts().delegate({
-		nftOrSft: nft,
-		authority: WALLET,
-		delegate: {
-			type: 'CollectionV1', // what is this type
-			delegate: WALLET.publicKey,
-			updateAuthority: WALLET.publicKey,
-		},
-	});
-	console.log(response);
-
-	// const a = await METAPLEX.nfts().lock({
-	// 	nftOrSft: nft,
-	// 	authority: {
-	// 		__kind: 'tokenDelegate',
-	// 		type: 'UtilityV1',
-	// 		delegate: WALLET,
-	// 		owner: WALLET.publicKey,
-	// 	},
-	// });
-	// console.log(a.response)
+	return nft;
 }
 
 async function main() {
-	await createLevelXNft(1, '1.png');
+	// test create function
+	let nft: NftWithToken = await createLevelXNft(1, '1.png');
+	// test update function
+	await updateNftLevel(nft, 2);
 }
 
 main();
-// QUESTIONS FOR MYSELF
-// what is bundlrStorage

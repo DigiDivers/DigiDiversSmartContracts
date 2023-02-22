@@ -1,0 +1,25 @@
+{
+	"name": "DigiDiversSmartContracts",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/DigiDivers/DigiDiversSmartContracts.git",
+	"author": "steven arellano <stevenjarellano2@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"@metaplex-foundation/js": "^0.18.1",
+		"@solana/spl-token": "^0.3.7",
+		"@solana/web3.js": "^1.73.2",
+		"cookie-parser": "~1.4.4",
+		"debug": "~2.6.9",
+		"express": "~4.16.1",
+		"http-errors": "~1.6.3",
+		"jade": "~1.11.0",
+		"morgan": "~1.9.1"
+	},
+	"devDependencies": {
+		"typescript": "^4.9.5",
+		"@types/cookie-parser": "^1.4.3",
+		"@types/express": "^4.17.17",
+		"@types/morgan": "^1.9.4"
+	}
+}
