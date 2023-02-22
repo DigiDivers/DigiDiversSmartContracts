@@ -65,19 +65,29 @@ async function createLevelXNft(
 }
 
 // update NFT
-async function updateNftLevel(nft: NftWithToken, newLevel: number) {
+async function updateNftLevel(nft: NftWithToken, newLevel: number, newImage?: string) {
 	console.log(`old nft metadata: `, nft.json);
 
-	const newMetadata: UploadMetadataInput = {
-		...nft.json,
-		image: 'https://arweave.net/8b6yTDi8bX0bB1w9L9Rgjz-HUUbUJ9ijn_eJ30ThL8k', // TODO: update function to take in an image
-		attributes: [{ trait_type: 'Level', value: newLevel.toString() }],
-	};
+	let newMetadata: UploadMetadataInput; 
+	if (newImage !== undefined) {
+		// Step 1 - Upload Image
+		const imgUri = await uploadImage('assets/', newImage);
+		newMetadata = {
+			...nft.json,
+			image: imgUri,
+			attributes: [{ trait_type: 'Level', value: newLevel.toString() }],
+		};
+	} else {
+		newMetadata = {
+			...nft.json,
+			attributes: [{ trait_type: 'Level', value: newLevel.toString() }],
+		};
+	}
 	const { uri: newUri } = await METAPLEX.nfts().uploadMetadata(newMetadata);
 
 	console.log(`new nft metadata: `, newMetadata);
 
-	// console.log(`   New Metadata URI:`, newUri);
+	//onsole.log(`   New Metadata URI:`, newUri);
 	await METAPLEX.nfts().update({
 		nftOrSft: nft,
 		uri: newUri,
@@ -156,7 +166,7 @@ async function main() {
 	// test create function
 	let nft: NftWithToken = await createLevelXNft(1, '1.png');
 	// test update function
-	await updateNftLevel(nft, 2);
+	await updateNftLevel(nft, 2, '2.png');
 }
 
 main();
