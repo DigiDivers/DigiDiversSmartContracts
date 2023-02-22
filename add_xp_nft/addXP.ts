@@ -1,6 +1,7 @@
 import { Connection, Keypair, PublicKey } from "@solana/web3.js";
 import { Metaplex, keypairIdentity, bundlrStorage, Nft, Sft } from "@metaplex-foundation/js";
 import secret from './guideSecret.json';
+import token from "@solana/spl-token";
 
 const QUICKNODE_RPC = 'https://spring-powerful-ensemble.solana-devnet.discover.quiknode.pro/67a7b069690f38116d2da95bb3c9d6bc2f4e8b0e/'; 
 const SOLANA_CONNECTION = new Connection(QUICKNODE_RPC);

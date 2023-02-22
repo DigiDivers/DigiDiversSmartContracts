@@ -67,7 +67,8 @@ async function createLevelXNft(level: number, image: string): Promise<NftWithTok
 	);
 }
 
-async function updateNft(nft: NftWithToken, newLevel: number) {
+// update NFT
+async function updateNftLevel(nft: NftWithToken, newLevel: number) {
 	const { uri: newUri } = await METAPLEX.nfts().uploadMetadata({
 		...nft.json,
 		attributes: [{ trait_type: 'Level', value: newLevel.toString()}],
