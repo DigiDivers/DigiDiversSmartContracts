@@ -25,7 +25,7 @@ const METAPLEX = Metaplex.make(connection)
 		})
 	);
 
-async function createLevelXNft(
+export async function createLevelXNft(
 	level: number,
 	image: string
 ): Promise<NftWithToken> {
@@ -65,7 +65,7 @@ async function createLevelXNft(
 }
 
 // update NFT
-async function updateNftLevel(nft: NftWithToken, newLevel: number, newImage?: string) {
+export async function updateNftLevel(nft: NftWithToken, newLevel: number, newImage?: string): Promise<NftWithToken> {
 	console.log(`old nft metadata: `, nft.json);
 
 	let newMetadata: UploadMetadataInput; 
@@ -95,6 +95,7 @@ async function updateNftLevel(nft: NftWithToken, newLevel: number, newImage?: st
 	console.log(
 		`Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`
 	);
+	return nft
 }
 
 // upload NFT metadata
@@ -161,12 +162,3 @@ async function mintNft(
 	);
 	return nft;
 }
-
-async function main() {
-	// test create function
-	let nft: NftWithToken = await createLevelXNft(1, '1.png');
-	// test update function
-	await updateNftLevel(nft, 2, '2.png');
-}
-
-main();
