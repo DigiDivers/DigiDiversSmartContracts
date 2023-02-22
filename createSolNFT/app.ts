@@ -5,6 +5,7 @@ import {
 	bundlrStorage,
 	toMetaplexFile,
 	toBigNumber,
+	NftWithToken,
 } from '@metaplex-foundation/js';
 import * as fs from 'fs';
 import secret from './localWallet/my-keypair.json';
@@ -24,7 +25,6 @@ const METAPLEX = Metaplex.make(connection)
 		})
 	);
 
-
 // CONFIG FUNCTION
 // parameters: level,
 // create meta data
@@ -36,9 +36,7 @@ async function createLevelXNft(level: number, image: string = 'science.png') {
 		imgName: 'Level Image',
 		tokenStandard: 4,
 		description: 'Level Avatar Digi Divers',
-		attributes: [
-			{ trait_type: 'Level', value: level.toString()}
-		],
+		attributes: [{ trait_type: 'Level', value: level.toString() }],
 		sellerFeeBasisPoints: 500, //500 bp = 5%
 		symbol: 'DIGI',
 		creators: [{ address: WALLET.publicKey, share: 100 }],
@@ -135,6 +133,32 @@ async function mintNft(
 	console.log(
 		`   Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`
 	);
+
+	await addDelegate(nft);
+}
+
+async function addDelegate(nft: NftWithToken) {
+	let { response } = await METAPLEX.nfts().delegate({
+		nftOrSft: nft,
+		authority: WALLET,
+		delegate: {
+			type: 'CollectionV1', // what is this type
+			delegate: WALLET.publicKey,
+			updateAuthority: WALLET.publicKey,
+		},
+	});
+	console.log(response);
+
+	// const a = await METAPLEX.nfts().lock({
+	// 	nftOrSft: nft,
+	// 	authority: {
+	// 		__kind: 'tokenDelegate',
+	// 		type: 'UtilityV1',
+	// 		delegate: WALLET,
+	// 		owner: WALLET.publicKey,
+	// 	},
+	// });
+	// console.log(a.response)
 }
 
 async function main() {
@@ -144,4 +168,3 @@ async function main() {
 main();
 // QUESTIONS FOR MYSELF
 // what is bundlrStorage
-
