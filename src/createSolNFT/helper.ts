@@ -1,4 +1,4 @@
-import secret from './localWallet/my-keypair.json';
+import { secret } from '../assets';
 import { Keypair } from '@solana/web3.js';
 
 const privKey = Keypair.fromSecretKey(new Uint8Array(secret)).secretKey;
