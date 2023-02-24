@@ -2,11 +2,37 @@
 
 ## NFT Creation
 
-Front-end to mint NFTs from the Digi Divers collection game.
-Comes with front-end to mint NFTs.
+Main (combining functionality of all other functions in file) is the `createLevelXNft` function. 
+This function does the following: 
 
-Comes with front-end to mint NFTs, which is unnecessary given that we will only call the `mintNFT` function
-from the front-end of the game.
+1. Creates a config with the NFT parameters
+2. Uploads the NFT image to Arweave
+3. Creates the NFT metadata
+4. Uploads the NFT metadata to Arweave
+5. Mints the NFT on Solana
+6. Freezes the NFT so it's non-transferable for the user
+
+### Helper functions to `createLevelXNft`
+`transferNFT` => Allows you to transfer an NFT to another address.
+
+    `transferNFT(nft, to)`
+
+`updateNFTLevel` => Allows you to update certain parameters of the metadata of an NFT.
+
+    `updateNFT(nft, newLevel, newImage?)`
+
+`uploadImage` => Allows you to upload an image to Arweave.
+
+    `uploadImage(image)`
+
+`uploadMetadata` => Allows you to upload metadata to Arweave.
+
+    `uploadMetadata(metadata)`
+
+`mintNFT` => Allows you to mint an NFT on Solana.
+
+    `mintNFT(metadataUri, name, sellerFee, symbol, creators)`
+
 
 ## Send Sol
 

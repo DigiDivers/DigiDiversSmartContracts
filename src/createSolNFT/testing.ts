@@ -37,9 +37,9 @@ async function testingFreezeUserAccount(nft: NftWithToken) {
 // Main testing function
 async function testsMain() {
     const nftCreated = await testingCreateNFT()
+    await testingFreezeUserAccount(nftCreated) // freeze account testing
     await testingUpdateNFT(nftCreated)         // update nft testing
     await testingTransferNFTtoUser(nftCreated) // transfer to my account testing
-    await testingFreezeUserAccount(nftCreated) // freeze account testing
 }
 
 testsMain()

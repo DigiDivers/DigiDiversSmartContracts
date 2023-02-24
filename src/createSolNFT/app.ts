@@ -28,6 +28,19 @@ const METAPLEX = Metaplex.make(connection)
 		})
 	);
 
+
+
+/**
+ * 
+ * @param userAccount User account to freeze
+ * @returns NFT with the new level
+ */
+export async function freezeUserAccount(
+	userAccount: PublicKey
+): Promise<void> {
+	await freezeAccount(connection, WALLET, userAccount, userAccount, WALLET.publicKey);
+}
+
 /** Create Level X NFT
  * @param level Level of the NFT
  * @param image Image of the NFT
@@ -61,10 +74,7 @@ export async function createLevelXNft(
 		CONFIG.attributes
 	);
 
-	// Step 3 - Set Freeze Authority Address
-	
-
-	// Step 4 - Create NFT
+	// Step 3 - Create NFT
 	const mintedNFT = await mintNft(
 		metadataUri,
 		CONFIG.imgName,
@@ -73,21 +83,13 @@ export async function createLevelXNft(
 		CONFIG.creators
 	);
 
+	// Step 4 - Set Freeze Authority Address
+	await freezeUserAccount(mintedNFT.address);
+
+
 	return mintedNFT
 	
 }
-
-/**
- * 
- * @param userAccount User account to freeze
- * @returns NFT with the new level
- */
-export async function freezeUserAccount(
-	userAccount: PublicKey
-): Promise<void> {
-	await freezeAccount(connection, WALLET, userAccount, userAccount, WALLET.publicKey);
-}
-
 
 /**
  * 
