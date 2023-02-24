@@ -1,4 +1,4 @@
-import { Connection, Keypair, PublicKey, clusterApiUrl } from '@solana/web3.js';
+import { PublicKey } from '@solana/web3.js';
 import { freezeAccount } from '@solana/spl-token';
 import { CONNECTION, WALLET } from '../utils';
 
