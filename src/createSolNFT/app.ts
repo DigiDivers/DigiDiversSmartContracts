@@ -11,6 +11,8 @@ import {
 import * as fs from 'fs';
 import { secret } from '../assets';
 
+
+
 const DEVNET_ENDPOINT = clusterApiUrl('devnet');
 const connection = new Connection(DEVNET_ENDPOINT);
 const WALLET = Keypair.fromSecretKey(new Uint8Array(secret));
@@ -26,10 +28,9 @@ const METAPLEX = Metaplex.make(connection)
 	);
 
 /** Create Level X NFT
- * @param level: Level of the NFT
- * @param image: Image of the NFT
- * @returns NFT with the new level
- */
+ * @param level Level of the NFT
+ * @param image Image of the NFT
+ * @returns NFT with the new level */
 export async function createLevelXNft(
 	level: number,
 	image: string
@@ -71,11 +72,10 @@ export async function createLevelXNft(
 
 /**
  * Update NFT Level
- * @param nft: NFT to update
- * @param newLevel: New level of the NFT
- * @param newImage: New image of the NFT
- * @returns NFT with the new level
- */
+ * @param nft NFT to update
+ * @param newLevel New level of the NFT
+ * @param newImage New image of the NFT
+ * @returns NFT with the new level */
 export async function updateNftLevel(
 	nft: NftWithToken, 
 	newLevel: number, 
@@ -85,7 +85,6 @@ export async function updateNftLevel(
 
 	let newMetadata: UploadMetadataInput; 
 	if (newImage !== undefined) {
-		// Step 1 - Upload Image
 		const imgUri = await uploadImage('assets/', newImage);
 		newMetadata = {
 			...nft.json,
@@ -102,7 +101,6 @@ export async function updateNftLevel(
 
 	console.log(`new nft metadata: `, newMetadata);
 
-	//onsole.log(`   New Metadata URI:`, newUri);
 	await METAPLEX.nfts().update({
 		nftOrSft: nft,
 		uri: newUri,
@@ -115,10 +113,9 @@ export async function updateNftLevel(
 
 /**
  * Upload Image to Arweave 
- * @param filePath: Path of the image
- * @param fileName: Name of the image
- * @returns URI of the image
- */
+ * @param filePath Path of the image
+ * @param fileName Name of the image
+ * @returns URI of the image */
 async function uploadImage(
 	filePath: string,
 	fileName: string
@@ -133,13 +130,12 @@ async function uploadImage(
 
 /**
  * Upload Metadata
- * @param imgUri: URI of the image
- * @param imgType: Type of the image
- * @param nftName: Name of the NFT
- * @param description: Description of the NFT
- * @param attributes: Array of attributes
- * @returns URI of the metadata 
- */
+ * @param imgUri URI of the image
+ * @param imgType Type of the image
+ * @param nftName Name of the NFT
+ * @param description Description of the NFT
+ * @param attributes Array of attributes
+ * @returns URI of the metadata */
 async function uploadMetadata(
 	imgUri: string,
 	imgType: string,
@@ -173,8 +169,7 @@ async function uploadMetadata(
  * @param sellerFee: Seller fee in basis points
  * @param symbol: Symbol of the NFT
  * @param creators: Array of creators
- * @returns NftWithToken
- */
+ * @returns NftWithToken */
 async function mintNft(
 	metadataUri: string,
 	name: string,
@@ -183,11 +178,15 @@ async function mintNft(
 	creators: { address: PublicKey; share: number }[]
 ): Promise<NftWithToken> {
 	console.log(`Step 3 - Minting NFT`);
+	// .create (input: CreateNftInput, options?: OperationOptions) 
 	const { nft } = await METAPLEX.nfts().create(
 		{
 			uri: metadataUri,
 			name: name,
+			updateAuthority: WALLET,
 			sellerFeeBasisPoints: sellerFee,
+			tokenStandard: 4, // make it ProgrammableNonFungible 
+			isMutable: true, // true metadata mutable
 			symbol: symbol,
 			creators: creators,
 			maxSupply: toBigNumber(1),

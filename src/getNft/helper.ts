@@ -62,10 +62,12 @@ export const checkNFTs = async (ownerAddress: string) => {
         if (digi.model === 'metadata') {
             digisAsNFTs.push(metaDataToNFTs(digi));
         } else {
-            digisAsNFTs.push(Promise.resolve(digi)); // if it's not metadata, it's already an NFT; j turned into a promise for consistency
+            // if it's not metadata, it's already an NFT; j turned into a promise for consistency
+            digisAsNFTs.push(Promise.resolve(digi)); 
         }
     }
 
+    console.log(fetchedNFTData)
     const digisNFTData: Nft[] = await Promise.all(digisAsNFTs);
 
     const maxDigi: Nft = digisNFTData.reduce(
