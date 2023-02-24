@@ -41,9 +41,6 @@ export async function freezeUserAccount(
 	await freezeAccount(connection, WALLET, userAccount, userAccount, WALLET.publicKey);
 }
 
-export async function addExperienceNFT(nft: NftWithToken) {
-
-}
 /** Create Level X NFT
  * @param level Level of the NFT
  * @param image Image of the NFT
@@ -93,7 +90,6 @@ export async function createLevelXNft(
 
 	// Step 4 - Set Freeze Authority Address
 	await freezeUserAccount(mintedNFT.address);
-
 
 	return mintedNFT
 	

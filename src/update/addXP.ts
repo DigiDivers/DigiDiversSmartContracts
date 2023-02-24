@@ -1,14 +1,12 @@
 import { NftWithToken, UploadMetadataInput } from '@metaplex-foundation/js';
-import { uploadImage } from '../create';
 import { METAPLEX } from '../utils';
 
 /**
- * Update NFT Level
- * @param nft: NFT to update
- * @param newLevel: New level of the NFT
- * @param newImage: New image of the NFT
- * @returns NFT with the new level
- */
+ * Add XP to an NFT
+ * @param nft NFT to add XP to
+ * @param xp XP to add
+ * @returns NFT Metadata with the new XP
+*/
 export async function addXP(
     nft: NftWithToken,
     xp: number,

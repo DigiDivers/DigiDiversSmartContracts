@@ -20,7 +20,8 @@ export const fetchDigisByWallet = async (ownerAddress: string) => {
         if (digi.model === 'metadata') {
             digisAsNFTs.push(metadataToNfts(digi));
         } else {
-            digisAsNFTs.push(Promise.resolve(digi)); // if it's not metadata, it's already an NFT; j turned into a promise for consistency
+            // if it's not metadata, it's already an NFT; j turned into a promise for consistency
+            digisAsNFTs.push(Promise.resolve(digi)); 
         }
     }
 
