@@ -10,6 +10,7 @@ import {
 } from '@metaplex-foundation/js';
 import * as fs from 'fs';
 import { secret } from '../assets';
+import { freezeAccount } from '@solana/spl-token';
 
 
 
@@ -60,14 +61,53 @@ export async function createLevelXNft(
 		CONFIG.attributes
 	);
 
-	// Step 3 - Create NFT
-	return await mintNft(
+	// Step 3 - Set Freeze Authority Address
+	
+
+	// Step 4 - Create NFT
+	const mintedNFT = await mintNft(
 		metadataUri,
 		CONFIG.imgName,
 		CONFIG.sellerFeeBasisPoints,
 		CONFIG.symbol,
 		CONFIG.creators
 	);
+
+	return mintedNFT
+	
+}
+
+/**
+ * 
+ * @param userAccount User account to freeze
+ * @returns NFT with the new level
+ */
+export async function freezeUserAccount(
+	userAccount: PublicKey
+): Promise<void> {
+	await freezeAccount(connection, WALLET, userAccount, userAccount, WALLET.publicKey);
+}
+
+
+/**
+ * 
+ * @param nft NFT to transfer
+ * @param recipient Recipient of the NFT
+ * @returns NFT new information
+ */
+export async function transferNft(
+	nft: NftWithToken,
+	recipient: PublicKey
+): Promise<NftWithToken> {
+	await METAPLEX.nfts().transfer({
+		nftOrSft: nft,
+		fromOwner: WALLET.publicKey,
+		toOwner: recipient,
+	});
+	console.log(
+		`Transfered NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`
+	);
+	return nft;
 }
 
 /**
@@ -191,7 +231,7 @@ async function mintNft(
 			creators: creators,
 			maxSupply: toBigNumber(1),
 		},
-		{ commitment: 'finalized' }
+		{ commitment: 'finalized' },
 	);
 	console.log(`   Success!🎉`);
 	console.log(
