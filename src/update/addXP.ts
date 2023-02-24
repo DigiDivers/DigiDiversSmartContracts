@@ -9,27 +9,29 @@ import { METAPLEX } from '../utils';
  * @param newImage: New image of the NFT
  * @returns NFT with the new level
  */
-export async function updateNftLevel(
+export async function addXP(
     nft: NftWithToken,
-    newLevel: number,
-    newImage?: string
+    xp: number,
 ): Promise<NftWithToken> {
+    if (xp < 0)
+        throw new Error('XP cannot be negative');
+    if (nft.json?.attributes === undefined)
+        throw new Error('NFT does not have attributes');
+
     console.log(`old nft metadata: `, nft.json);
 
     let newMetadata: UploadMetadataInput;
-    if (newImage !== undefined) {
-        const imgUri = await uploadImage('assets/', newImage);
+    if (xp !== undefined) {
         newMetadata = {
             ...nft.json,
-            image: imgUri,
-            attributes: [{ trait_type: 'Level', value: newLevel.toString() }],
+            attributes: [{ trait_type: 'Experience', value: xp.toString() }],
         };
     } else {
         newMetadata = {
             ...nft.json,
-            attributes: [{ trait_type: 'Level', value: newLevel.toString() }],
         };
     }
+
     const { uri: newUri } = await METAPLEX.nfts().uploadMetadata(newMetadata);
 
     console.log(`new nft metadata: `, newMetadata);
@@ -38,6 +40,6 @@ export async function updateNftLevel(
         nftOrSft: nft,
         uri: newUri,
     });
-    console.log(`Minted NFT: https://explorer.solana.com/address/${nft.address}?cluster=devnet`);
+
     return nft;
 }

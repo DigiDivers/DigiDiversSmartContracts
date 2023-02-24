@@ -30,3 +30,14 @@ export const fetchDigisByWallet = async (ownerAddress: string) => {
 
     // console.log((await digis[0]).json?.attributes);
 };
+
+
+export const checkLevelDigi = async(ownerAddress: string): Promise<string> => {
+    const nfts: FindNftsByOwnerOutput = await METAPLEX.nfts().findAllByOwner({
+        owner: getPublicKeyFromAddress(ownerAddress),
+    });
+    const fetchedNFTData = nfts.filter((nft) => nft.symbol === 'DIGI'); 
+    const digi = fetchedNFTData[0].json?.attributes?.find((att) => att.trait_type === 'level');
+    const levelDigi = digi?.value;
+    return levelDigi ? levelDigi : 'no levelDigi';
+}
