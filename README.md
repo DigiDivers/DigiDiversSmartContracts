@@ -15,30 +15,43 @@ This function does the following:
 ### Helper functions to `createLevelXNft`
 `transferNFT` => Allows you to transfer an NFT to another address.
 
-    `transferNFT(nft, to)`
+    ```javascript
+    transferNFT(nft, to)
+    ```
+
 
 `updateNFTLevel` => Allows you to update certain parameters of the metadata of an NFT.
 
-    `updateNFT(nft, newLevel, newImage?)`
+    ```javascript
+    updateNFT(nft, newLevel, newImage?)
+    ```
 
 `uploadImage` => Allows you to upload an image to Arweave.
 
-    `uploadImage(image)`
+    ```javascript
+    uploadImage(image)
+    ```
 
 `uploadMetadata` => Allows you to upload metadata to Arweave.
 
-    `uploadMetadata(metadata)`
+    ```javascript
+    uploadMetadata(metadata)
+    ```
 
 `mintNFT` => Allows you to mint an NFT on Solana.
 
-    `mintNFT(metadataUri, name, sellerFee, symbol, creators)`
+    ```javascript
+    mintNFT(metadataUri, name, sellerFee, symbol, creators)
+    ```
 
 
 ## Send Sol
 
 Allows you to send SOL to another address mapping.
 
-    `sendSolToUsers(from, mappingAddressAmount)`
+    ```javascript
+    sendSolToUsers(from, mappingAddressAmount)
+    ```
 
 ## Add Experience Level (XP) and Level Up (LVL) Existing pNFTs
 
@@ -46,7 +59,9 @@ Allows you to send SOL to another address mapping.
 
 Hypotethically => Allows you to add XP and LVL to existing pNFTs.
 
-    `updateNFT(nft, metadataUri, newName)`
+    ```javascript
+    updateNFT(nft, metadataUri, newName)
+    ```
 
 ## createSolNFT (will update)
 
