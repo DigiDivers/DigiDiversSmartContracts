@@ -1,6 +1,7 @@
 import { NftWithToken } from '@metaplex-foundation/js';
 import { mintNft, uploadImage, uploadMetadata } from './helper';
 import { WALLET } from '../utils';
+import { freezeUserAccount } from '../update';
 
 /** Creates and mints a new NFT with the given level and image to our wallet for airdrop
  * @param level: Level of the NFT
@@ -8,7 +9,6 @@ import { WALLET } from '../utils';
  * @returns NFT with the new level
  */
 export async function createAndMintLevelXNft(level: number, image: string): Promise<NftWithToken> {
-    console.log(__filename);
     const CONFIG = {
         uploadPath: 'assets/',
         imgFileName: image,
@@ -35,11 +35,16 @@ export async function createAndMintLevelXNft(level: number, image: string): Prom
     );
 
     // Step 3 - Create NFT
-    return await mintNft(
+    const mintedNFT = await mintNft(
         metadataUri,
         CONFIG.imgName,
         CONFIG.sellerFeeBasisPoints,
         CONFIG.symbol,
         CONFIG.creators
     );
+
+    // Step 4 - Set Freeze Authority Address
+    await freezeUserAccount(mintedNFT.address);
+
+    return mintedNFT;
 }

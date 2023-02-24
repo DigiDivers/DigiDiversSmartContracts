@@ -1,18 +1,59 @@
 # Smart Contract Management for Digi Divers
 
-## NFT Creation
+## NFT Creation (createSolNft)
+Main (combining functionality of all other functions in file) is the `createLevelXNft` function. 
+This function does the following: 
 
-Front-end to mint NFTs from the Digi Divers collection game.
-Comes with front-end to mint NFTs.
+1. Creates a config with the NFT parameters
+2. Uploads the NFT image to Arweave
+3. Creates the NFT metadata
+4. Uploads the NFT metadata to Arweave
+5. Mints the NFT on Solana
+6. Freezes the NFT so it's non-transferable for the user
 
-Comes with front-end to mint NFTs, which is unnecessary given that we will only call the `mintNFT` function
-from the front-end of the game.
+### Helper functions to `createLevelXNft`
+1. `transferNFT` => Allows you to transfer an NFT to another address.
+
+```javascript
+transferNFT(nft, to)
+```
+-----------------
+
+2. `updateNFTLevel` => Allows you to update certain parameters of the metadata of an NFT.
+
+```javascript
+updateNFT(nft, newLevel, newImage?)
+```
+
+-----------------
+
+3. `uploadImage` => Allows you to upload an image to Arweave.
+```javascript
+uploadImage(image)
+```
+-----------------
+
+4. `uploadMetadata` => Allows you to upload metadata to Arweave.
+
+```javascript
+uploadMetadata(metadata)
+```
+-----------------
+
+5. `mintNFT` => Allows you to mint an NFT on Solana.
+
+```javascript
+mintNFT(metadataUri, name, sellerFee, symbol, creators)
+```
+-----------------
 
 ## Send Sol
 
 Allows you to send SOL to another address mapping.
 
-    `sendSolToUsers(from, mappingAddressAmount)`
+```javascript
+sendSolToUsers(from, mappingAddressAmount)
+```
 
 ## Add Experience Level (XP) and Level Up (LVL) Existing pNFTs
 
@@ -20,16 +61,9 @@ Allows you to send SOL to another address mapping.
 
 Hypotethically => Allows you to add XP and LVL to existing pNFTs.
 
-    `updateNFT(nft, metadataUri, newName)`
-
-## createSolNFT (will update)
-
-to mint a devnet nft:
-
-1. add the local wallet to ur phantom using helper.ts
-2. run `cd createSolNFT`
-3. install ts-node
-4. run `ts-node app.ts`
+```javascript
+updateNFT(nft, metadataUri, newName)
+```
 
 ### resources
 

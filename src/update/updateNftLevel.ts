@@ -14,11 +14,10 @@ export async function updateNftLevel(
     newLevel: number,
     newImage?: string
 ): Promise<NftWithToken> {
-    console.log(`old nft metadata: `, nft.json); // for testing
+    console.log(`old nft metadata: `, nft.json);
 
     let newMetadata: UploadMetadataInput;
     if (newImage !== undefined) {
-        // Step 1 - Upload Image
         const imgUri = await uploadImage('assets/', newImage);
         newMetadata = {
             ...nft.json,
@@ -35,7 +34,6 @@ export async function updateNftLevel(
 
     console.log(`new nft metadata: `, newMetadata);
 
-    //onsole.log(`   New Metadata URI:`, newUri);
     await METAPLEX.nfts().update({
         nftOrSft: nft,
         uri: newUri,
