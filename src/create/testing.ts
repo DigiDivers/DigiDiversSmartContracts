@@ -1,12 +1,13 @@
 // Testing the createSolNFT module
-import { assertAccountExists, NftWithToken } from '@metaplex-foundation/js';
-import { createLevelXNft, updateNftLevel } from './app';
+import { NftWithToken } from '@metaplex-foundation/js';
+import { createAndMintLevelXNft } from './createAndMintLevelXNft';
+import { updateNftLevel } from '../update';
 
 async function testingCreateNFT() {
     // test create function
     console.log(`Creating NFT...`);
-    let nft: NftWithToken = await createLevelXNft(1, '1.png');
-    return nft
+    const nft: NftWithToken = await createAndMintLevelXNft(1, '1.png');
+    return nft;
 }
 
 async function testingUpdateNFT(nft: NftWithToken) {
@@ -18,8 +19,8 @@ async function testingUpdateNFT(nft: NftWithToken) {
 
 // Main testing function
 async function testsMain() {
-    const nftCreated = await testingCreateNFT()
-    await testingUpdateNFT(nftCreated)
+    const nftCreated = await testingCreateNFT();
+    await testingUpdateNFT(nftCreated);
 }
 
-testsMain()
+testsMain();

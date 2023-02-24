@@ -36,3 +36,5 @@ to mint a devnet nft:
 1. https://www.quicknode.com/guides/solana-development/how-to-mint-an-nft-on-solana-using-typescript
 2. https://www.quicknode.com/guides/solana-development/how-to-create-programmable-nfts-on-solana
 3. https://docs.solana.com/wallet-guide/file-system-wallet
+
+# troubleshooting
