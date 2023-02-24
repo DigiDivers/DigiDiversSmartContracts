@@ -1,7 +1,6 @@
 # Smart Contract Management for Digi Divers
 
-## NFT Creation
-
+## NFT Creation (createSolNft)
 Main (combining functionality of all other functions in file) is the `createLevelXNft` function. 
 This function does the following: 
 
@@ -13,45 +12,48 @@ This function does the following:
 6. Freezes the NFT so it's non-transferable for the user
 
 ### Helper functions to `createLevelXNft`
-`transferNFT` => Allows you to transfer an NFT to another address.
+1. `transferNFT` => Allows you to transfer an NFT to another address.
 
-    ```javascript
-    transferNFT(nft, to)
-    ```
+```javascript
+transferNFT(nft, to)
+```
+-----------------
 
+2. `updateNFTLevel` => Allows you to update certain parameters of the metadata of an NFT.
 
-`updateNFTLevel` => Allows you to update certain parameters of the metadata of an NFT.
+```javascript
+updateNFT(nft, newLevel, newImage?)
+```
 
-    ```javascript
-    updateNFT(nft, newLevel, newImage?)
-    ```
+-----------------
 
-`uploadImage` => Allows you to upload an image to Arweave.
+3. `uploadImage` => Allows you to upload an image to Arweave.
+```javascript
+uploadImage(image)
+```
+-----------------
 
-    ```javascript
-    uploadImage(image)
-    ```
+4. `uploadMetadata` => Allows you to upload metadata to Arweave.
 
-`uploadMetadata` => Allows you to upload metadata to Arweave.
+```javascript
+uploadMetadata(metadata)
+```
+-----------------
 
-    ```javascript
-    uploadMetadata(metadata)
-    ```
+5. `mintNFT` => Allows you to mint an NFT on Solana.
 
-`mintNFT` => Allows you to mint an NFT on Solana.
-
-    ```javascript
-    mintNFT(metadataUri, name, sellerFee, symbol, creators)
-    ```
-
+```javascript
+mintNFT(metadataUri, name, sellerFee, symbol, creators)
+```
+-----------------
 
 ## Send Sol
 
 Allows you to send SOL to another address mapping.
 
-    ```javascript
-    sendSolToUsers(from, mappingAddressAmount)
-    ```
+```javascript
+sendSolToUsers(from, mappingAddressAmount)
+```
 
 ## Add Experience Level (XP) and Level Up (LVL) Existing pNFTs
 
@@ -59,18 +61,9 @@ Allows you to send SOL to another address mapping.
 
 Hypotethically => Allows you to add XP and LVL to existing pNFTs.
 
-    ```javascript
-    updateNFT(nft, metadataUri, newName)
-    ```
-
-## createSolNFT (will update)
-
-to mint a devnet nft:
-
-1. add the local wallet to ur phantom using helper.ts
-2. run `cd createSolNFT`
-3. install ts-node
-4. run `ts-node app.ts`
+```javascript
+updateNFT(nft, metadataUri, newName)
+```
 
 ### resources
 
