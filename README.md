@@ -12,7 +12,7 @@ This function does the following:
 6. Freezes the NFT so it's non-transferable for the user
 
 ### Helper functions to `createLevelXNft`
-1. `transferNFT` => Allows you to transfer an NFT to another address.
+1. `transferNft` => Allows you to transfer an NFT to another address.
 
 ```javascript
 transferNFT(nft, to)
