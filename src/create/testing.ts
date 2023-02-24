@@ -35,7 +35,7 @@ async function testingFreezeUserAccount(nft: NftWithToken) {
     await freezeUserAccount(nft.address);
     console.log(`Account frozen successfully: \n`, nft);
 
-    console.log();
+    // console.log();
 }
 
 // Main testing function
