@@ -1,43 +1,46 @@
 {
-	"name": "DigiDiversSmartContracts",
-	"version": "1.0.0",
-	"main": "index.js",
-	"repository": "https://github.com/DigiDivers/DigiDiversSmartContracts.git",
-	"author": "steven arellano <stevenjarellano2@gmail.com>",
-	"license": "MIT",
-	"scripts": {
-		"build": "tsc",
-		"start": "ts-node ./src/index.ts",
-		"lint": "eslint . --ext .ts",
-		"test": "jest"
-	},
-	"dependencies": {
-		"@metaplex-foundation/js": "^0.18.1",
-		"@solana/spl-token": "^0.3.7",
-		"@solana/web3.js": "^1.73.2",
-		"cookie-parser": "~1.4.4",
-		"debug": "~2.6.9",
-		"dotenv": "^16.0.3",
-		"express": "~4.16.1",
-		"http-errors": "~1.6.3",
-		"jade": "~1.11.0",
-		"js-base64": "^3.7.5",
-		"morgan": "~1.9.1"
-	},
-	"devDependencies": {
-		"@types/cookie-parser": "^1.4.3",
-		"@types/express": "^4.17.17",
-		"@types/jest": "^29.4.0",
-		"@types/morgan": "^1.9.4",
-		"@typescript-eslint/eslint-plugin": "^5.53.0",
-		"@typescript-eslint/parser": "^5.53.0",
-		"eslint": "^8.34.0",
-		"eslint-config-prettier": "^8.6.0",
-		"eslint-plugin-prettier": "^4.2.1",
-		"jest": "^29.4.3",
-		"prettier": "^2.8.4",
-		"ts-jest": "^29.0.5",
-		"ts-node": "^10.9.1",
-		"typescript": "^4.9.5"
-	}
+    "name": "DigiDiversSmartContracts",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/DigiDivers/DigiDiversSmartContracts.git",
+    "author": "steven arellano <stevenjarellano2@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "start": "ts-node ./src/index.ts",
+        "lint": "eslint . --ext .ts",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@metaplex-foundation/js": "^0.18.1",
+        "@solana/spl-token": "^0.3.7",
+        "@solana/web3.js": "^1.73.2",
+        "babel-jest": "^29.4.3",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "dotenv": "^16.0.3",
+        "express": "~4.16.1",
+        "http-errors": "~1.6.3",
+        "jade": "~1.11.0",
+        "js-base64": "^3.7.5",
+        "morgan": "~1.9.1"
+    },
+    "devDependencies": {
+        "@babel/preset-typescript": "^7.21.0",
+        "@jest/globals": "^29.4.3",
+        "@types/cookie-parser": "^1.4.3",
+        "@types/express": "^4.17.17",
+        "@types/jest": "^29.4.0",
+        "@types/morgan": "^1.9.4",
+        "@typescript-eslint/eslint-plugin": "^5.53.0",
+        "@typescript-eslint/parser": "^5.53.0",
+        "eslint": "^8.34.0",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "jest": "^29.4.3",
+        "prettier": "^2.8.4",
+        "ts-jest": "^29.0.5",
+        "ts-node": "^10.9.1",
+        "typescript": "^4.9.5"
+    }
 }

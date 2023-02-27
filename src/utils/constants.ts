@@ -15,3 +15,5 @@ export const METAPLEX: Metaplex = Metaplex.make(CONNECTION)
             timeout: 60000,
         })
     );
+
+export const MOBILE_ADDR_BASE64 = 'EZCZz/y0YImqB6dGtua8GB7lSmZKGr9Go9k7Nsz0CP4=';
