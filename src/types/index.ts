@@ -1,6 +1,6 @@
 export type DigiInfo = {
     name: string;
-    level: number;
+    attributes: NftAttributes;
     imageUrl: string;
     symbol?: string;
 };
@@ -9,3 +9,12 @@ export type GetNFTResponse = {
     totalDigis: number;
     maxDigi: DigiInfo;
 };
+
+export interface NftAttributes {
+    [key: string]: string | number;
+}
+
+export interface JsonAttributeArray {
+    trait_type: string;
+    value: string | number;
+}

@@ -1,8 +1,8 @@
 // Testing the createSolNFT module
 import { NftWithToken, PublicKey } from '@metaplex-foundation/js';
-import { createAndMintLevelXNft } from './createAndMintLevelXNft';
-import { freezeUserAccount, updateNftLevel } from '../update';
-import { transferNft } from '../transfer';
+import { createAndMintLevelXNft } from '../createAndMintLevelXNft';
+import { freezeUserAccount, updateNftLevel } from '../../update';
+import { transferNft } from '../../transfer';
 
 async function testingCreateNFT() {
     // test create function
@@ -38,12 +38,10 @@ async function testingFreezeUserAccount(nft: NftWithToken) {
     // console.log();
 }
 
-// Main testing function
-async function testsMain() {
+export async function test1() {
+    console.log('test1(): creating, updating, transfering and freezing an NFT...');
     const nftCreated = await testingCreateNFT();
     await testingUpdateNFT(nftCreated); // update nft testing
     await testingTransferNFTtoUser(nftCreated); // transfer to my account testing
     await testingFreezeUserAccount(nftCreated); // freeze account testing
 }
-
-testsMain();

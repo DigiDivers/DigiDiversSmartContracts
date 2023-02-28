@@ -1,5 +1,6 @@
 import { PublicKey } from '@solana/web3.js';
 import { toUint8Array } from 'js-base64';
+import { JsonAttributeArray, NftAttributes } from '../types';
 
 const getPublicKeyFromAddress = (address: string): PublicKey => {
     // address is base64 encoded
@@ -11,7 +12,11 @@ const base58Tobase64 = (address: string): string => {
     return 'implement me';
 };
 
+function attributeArrayToObject(attributes: JsonAttributeArray[]): NftAttributes {
+    return attributes.reduce((acc: any, curr: any) => {
+        acc[curr.trait_type] = curr.value;
+        return acc;
+    }, {});
+}
 
-export { getPublicKeyFromAddress, base58Tobase64 };
-
-
+export { getPublicKeyFromAddress, base58Tobase64, attributeArrayToObject };
