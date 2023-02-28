@@ -51,7 +51,8 @@ export async function createLevelXNft(
 ): Promise<NftWithToken> {
 	const attributes = [
 		{ trait_type: 'Level', value: level.toString()}, 
-		{ trait_type: 'Experience', value: '0'}
+		{ trait_type: 'Experience', value: '0'}, 
+		{ trait_type: 'Rating', value: '900'}
 	];
 
 	const CONFIG = {
@@ -95,6 +96,7 @@ export async function createLevelXNft(
 	
 }
 
+
 /**
  * 
  * @param nft NFT to transfer
@@ -126,7 +128,8 @@ export async function updateNft(
 	nft: NftWithToken, 
 	newLevel?: number, 
 	newImage?: string,
-	newExperience?: number
+	newExperience?: number,
+	newRating?: number
 ): Promise<NftWithToken> {
 	console.log(`old nft metadata: `, nft.json);
 
@@ -151,6 +154,14 @@ export async function updateNft(
 		newMetadata = {
 			...nft.json,
 			attributes: [{ trait_type: 'Experience', value: newExperience.toString() }]
+		};
+	}
+
+	// update rating if new rating is provided
+	if (newRating !== undefined) {
+		newMetadata = {
+			...nft.json,
+			attributes: [{ trait_type: 'Rating', value: newRating.toString() }]
 		};
 	}
 
