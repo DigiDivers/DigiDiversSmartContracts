@@ -12,6 +12,7 @@ describe('fetch tests', () => {
 
     test('fetchDigisByWallet', async () => {
         const digis = await fetchDigisByWallet(MOBILE_ADDR_BASE64);
+        console.log(digis[0].json?.attributes);
         console.log(digis.length);
     });
 
