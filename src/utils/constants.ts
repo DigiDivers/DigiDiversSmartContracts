@@ -17,3 +17,4 @@ export const METAPLEX: Metaplex = Metaplex.make(CONNECTION)
     );
 
 export const MOBILE_ADDR_BASE64 = 'EZCZz/y0YImqB6dGtua8GB7lSmZKGr9Go9k7Nsz0CP4=';
+export const REQUIRED_EXPERIENCE = 10;

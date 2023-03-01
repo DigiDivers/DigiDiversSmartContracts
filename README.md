@@ -1,8 +1,9 @@
 # Smart Contract Management for Digi Divers
 
 ## NFT Creation (createSolNft)
-Main (combining functionality of all other functions in file) is the `createLevelXNft` function. 
-This function does the following: 
+
+Main (combining functionality of all other functions in file) is the `createLevelXNft` function.
+This function does the following:
 
 1. Creates a config with the NFT parameters
 2. Uploads the NFT image to Arweave
@@ -12,12 +13,14 @@ This function does the following:
 6. Freezes the NFT so it's non-transferable for the user
 
 ### Helper functions to `createLevelXNft`
+
 1. `transferNft` => Allows you to transfer an NFT to another address.
 
 ```javascript
-transferNFT(nft, to)
+transferNFT(nft, to);
 ```
------------------
+
+---
 
 2. `updateNFTLevel` => Allows you to update certain parameters of the metadata of an NFT.
 
@@ -25,35 +28,49 @@ transferNFT(nft, to)
 updateNFT(nft, newLevel, newImage?)
 ```
 
------------------
+---
 
 3. `uploadImage` => Allows you to upload an image to Arweave.
+
 ```javascript
-uploadImage(image)
+uploadImage(image);
 ```
------------------
+
+---
 
 4. `uploadMetadata` => Allows you to upload metadata to Arweave.
 
 ```javascript
-uploadMetadata(metadata)
+uploadMetadata(metadata);
 ```
------------------
+
+---
 
 5. `mintNFT` => Allows you to mint an NFT on Solana.
 
 ```javascript
-mintNFT(metadataUri, name, sellerFee, symbol, creators)
+mintNFT(metadataUri, name, sellerFee, symbol, creators);
 ```
------------------
+
+---
 
 ## Send Sol
 
 Allows you to send SOL to another address mapping.
 
 ```javascript
-sendSolToUsers(from, mappingAddressAmount)
+sendSolToUsers(from, mappingAddressAmount);
 ```
+
+# Running tests
+
+## run all tests
+
+`yarn run test`
+
+## run a specific test file
+
+`yarn run test <filename>.test.ts`
 
 ## Add Experience Level (XP) and Level Up (LVL) Existing pNFTs
 
@@ -62,7 +79,7 @@ sendSolToUsers(from, mappingAddressAmount)
 Hypotethically => Allows you to add XP and LVL to existing pNFTs.
 
 ```javascript
-updateNFT(nft, metadataUri, newName)
+updateNFT(nft, metadataUri, newName);
 ```
 
 ### resources

@@ -1,6 +1,6 @@
 import { NftWithToken, UploadMetadataInput } from '@metaplex-foundation/js';
 import { uploadImage } from '../create';
-import { METAPLEX } from '../utils';
+import { METAPLEX, addedAttributeArray } from '../utils';
 
 /**
  * Update NFT Level
@@ -17,17 +17,21 @@ export async function updateNftLevel(
     console.log(`old nft metadata: `, nft.json);
 
     let newMetadata: UploadMetadataInput;
+    const newAttributes = addedAttributeArray(nft, {
+        trait_type: 'Level',
+        value: newLevel.toString(),
+    });
     if (newImage !== undefined) {
         const imgUri = await uploadImage('assets/', newImage);
         newMetadata = {
             ...nft.json,
             image: imgUri,
-            attributes: [{ trait_type: 'Level', value: newLevel.toString() }],
+            attributes: newAttributes as any,
         };
     } else {
         newMetadata = {
             ...nft.json,
-            attributes: [{ trait_type: 'Level', value: newLevel.toString() }],
+            attributes: newAttributes as any,
         };
     }
     const { uri: newUri } = await METAPLEX.nfts().uploadMetadata(newMetadata);

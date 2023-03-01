@@ -14,7 +14,8 @@ export interface NftAttributes {
     [key: string]: string | number;
 }
 
-export interface JsonAttributeArray {
+
+export interface JsonAttribute {
     trait_type: string;
     value: string | number;
 }
