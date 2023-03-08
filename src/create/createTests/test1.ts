@@ -41,7 +41,7 @@ async function testingFreezeUserAccount(nft: NftWithToken) {
 export async function test1() {
     console.log('test1(): creating, updating, transfering and freezing an NFT...');
     const nftCreated = await testingCreateNFT();
-    // await testingUpdateNFT(nftCreated); // update nft testing 
-    // await testingTransferNFTtoUser(nftCreated); // transfer to my account testing
+    await testingUpdateNFT(nftCreated); // update nft testing
+    await testingTransferNFTtoUser(nftCreated); // transfer to my account testing
     // await testingFreezeUserAccount(nftCreated); // freeze account testing
 }
